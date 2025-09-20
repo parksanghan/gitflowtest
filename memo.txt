@@ -1,0 +1,146 @@
+﻿박상한 병장님,
+네, 스크린샷 설정 그대로 진행하시면 깔끔합니다. 한 단계씩 바로 정리해드릴게요.
+
+1) GitHub에서 레포 만들 때 (지금 화면 기준 체크리스트)
+
+Repository name: gitflowtest ✅
+
+Description: 선택
+
+Visibility: 팀 공개 필요 없으면 Public, 아니면 Private
+
+Add README: On ✅ (초기 커밋 생겨서 동기화 쉬움)
+
+Add .gitignore: VisualStudio ✅ (bin/obj 등 자동 제외)
+
+Add license: 오픈 소스면 MIT 추천(가볍고 범용). 비공개면 생략 가능
+→ Create repository 클릭
+
+2) GitHub Desktop으로 클론
+
+GitHub Desktop → File > Clone repository…
+
+새로 만든 gitflowtest 선택
+
+Local path: 예) D:\Dev\gitflowtest (원하시는 드라이브)
+
+Clone 완료
+
+3) VS2022에서 솔루션/프로젝트 추가 (정답 구조 만들기)
+
+목표 트리
+
+gitflowtest/
+ ├─ MyApp.sln
+ ├─ MyApp.Client.Wpf/
+ ├─ MyApp.Server.Api/
+ ├─ MyApp.Core/
+ ├─ MyApp.Tests/
+ └─ README.md
+
+
+VS2022 → File > New > Project > Blank Solution
+
+Name: MyApp
+
+Location: D:\Dev\gitflowtest → 생성 시 MyApp.sln가 레포 루트에 위치
+
+솔루션 우클릭 → Add > New Project
+
+WPF App (.NET) → MyApp.Client.Wpf (경로: D:\Dev\gitflowtest\MyApp.Client.Wpf)
+
+ASP.NET Core Web API → MyApp.Server.Api
+
+Class Library (.NET) → MyApp.Core
+
+xUnit Test Project (.NET) → MyApp.Tests
+※ “Place solution and project in the same directory” 체크 해제 (프로젝트 폴더가 분리되도록)
+
+참조 연결
+
+MyApp.Client.Wpf → Add Project Reference… → MyApp.Core
+
+MyApp.Server.Api → MyApp.Core
+
+MyApp.Tests → 필요한 대상(MyApp.Core, 서버 도메인 등)
+
+빌드/테스트 확인
+
+Build(Ctrl+Shift+B) → Test > Run All Tests
+
+4) 첫 커밋 & 푸시 (GitHub Desktop)
+
+GitHub Desktop에서 변경사항 확인 →
+커밋 메시지: chore(init): add solution & projects → Commit to main → Push origin
+
+5) 브랜치 전략 (초심자용 GitHub Flow)
+
+main: 항상 안정/배포 가능한 상태
+
+feature/*: 새 기능마다 생성 (예: feature/health-endpoint, feature/wpf-login-ui)
+
+(버그) fix/*: fix/nullref-auth
+
+작은 PR로 자주 머지하고, Squash merge로 이력 깔끔 유지
+
+브랜치 만들기/PR 빠른 루틴 (Desktop)
+
+Current Branch > New Branch… → feature/health-endpoint
+
+VS에서 작업 후 GitHub Desktop으로 커밋
+
+Publish branch → Create Pull Request → 리뷰/머지
+
+main으로 전환 후 Pull 받아 최신 동기화
+
+6) main 보호 설정 (강력 추천)
+
+GitHub → Settings > Branches > Add rule
+
+Require a pull request before merging
+
+Require status checks to pass before merging (CI 설정 후)
+
+(선택) Require linear history
+
+7) 간단 CI 추가 (선택이지만 추천)
+
+레포 루트에 .github/workflows/dotnet.yml
+
+name: .NET CI
+on:
+  pull_request: { branches: [ "main" ] }
+  push:         { branches: [ "main" ] }
+jobs:
+  build-and-test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - run: dotnet restore MyApp.sln
+      - run: dotnet build MyApp.sln --configuration Release --no-restore
+      - run: dotnet test  MyApp.sln --configuration Release --no-build
+
+8) 소소하지만 도움되는 추가 세팅
+
+.gitattributes(개행 통일):
+
+* text=auto
+
+
+.editorconfig(코딩 스타일 통일): VS에서 자동 생성 가능
+
+README에 실행 방법/폴더구조/스택 간단 정리
+
+9) 다음 작업 예시 흐름
+
+feature/health-endpoint 브랜치 생성
+
+MyApp.Server.Api에 /health GET 엔드포인트 추가
+
+MyApp.Tests에 간단 테스트 추가
+
+PR 생성 → 머지 → main에서 태그(선택)
+ 
