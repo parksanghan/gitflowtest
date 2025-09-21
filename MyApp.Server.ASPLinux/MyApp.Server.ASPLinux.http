@@ -1,6 +1,0 @@
-@MyApp.Server.ASPLinux_HostAddress = http://localhost:5086
-
-GET {{MyApp.Server.ASPLinux_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

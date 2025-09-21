@@ -14,11 +14,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyApp.Core", "MyApp.Core\My
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyApp.Tests", "MyApp.Tests\MyApp.Tests.csproj", "{3D1F789C-D6C9-4AE9-8727-792184C741B3}"
 EndProject
-<<<<<<< Updated upstream
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyApp.Server.AspLinuxApi", "MyApp.Server.AspLinuxApi\MyApp.Server.AspLinuxApi.csproj", "{0D622688-803A-484F-A3A6-3BA88949BFCA}"
-=======
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyApp.Server.ASPLinux", "MyApp.Server.ASPLinux\MyApp.Server.ASPLinux.csproj", "{59CCA5C2-D796-45BF-A82C-33770A984E90}"
->>>>>>> Stashed changes
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,17 +34,10 @@ Global
 		{3D1F789C-D6C9-4AE9-8727-792184C741B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D1F789C-D6C9-4AE9-8727-792184C741B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D1F789C-D6C9-4AE9-8727-792184C741B3}.Release|Any CPU.Build.0 = Release|Any CPU
-<<<<<<< Updated upstream
 		{0D622688-803A-484F-A3A6-3BA88949BFCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0D622688-803A-484F-A3A6-3BA88949BFCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D622688-803A-484F-A3A6-3BA88949BFCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D622688-803A-484F-A3A6-3BA88949BFCA}.Release|Any CPU.Build.0 = Release|Any CPU
-=======
-		{59CCA5C2-D796-45BF-A82C-33770A984E90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{59CCA5C2-D796-45BF-A82C-33770A984E90}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{59CCA5C2-D796-45BF-A82C-33770A984E90}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{59CCA5C2-D796-45BF-A82C-33770A984E90}.Release|Any CPU.Build.0 = Release|Any CPU
->>>>>>> Stashed changes
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
